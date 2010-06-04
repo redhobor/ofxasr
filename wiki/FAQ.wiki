@@ -1,6 +1,4 @@
-#Frequently Asked Questions.
-
-=Frequently Asked Questions=
+Frequently Asked Questions.
 
 ===Which languages will it be possible to use ?===
 This addon is independent from language.
