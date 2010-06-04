@@ -1,0 +1,12 @@
+#summary One-sentence summary of this page.
+
+=Frequently Asked Questions=
+
+===Which languages will it be possible to use ?===
+This addon is independent from language.
+
+Which language a ASR engine support depends on the type of the acoustic model and the language model, however, to train such models is not an easy thing, that need huge of sound data.
+
+There're some open source organisations provide models, such as VoxForge (http://www.voxforge.org/). Most open source models are in English, so, the first release of ofxASR shipped an opensource English model.
+
+It is very easy to replace the model by yourself, just download(or train) a new model and copy it to the special path.
