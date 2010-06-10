@@ -30,20 +30,56 @@
 
 #include "ofMain.h"
 
+// The return codes
+#define OFXASR_SUCCESS                   0
+#define OFXASR_FAIL_UNKNOWN             -1
+#define OFXASR_FAIL_READ_FILES          -2
+#define OFXASR_HAVE_NOT_INIT            -3
+#define OFXASR_FAIL_WRITE_CONFIG        -4
+#define OFXASR_INVALID_JSGF_GRAMMAR     -5
+#define OFXASR_INVALID_CONFIG           -6
+#define OFXASR_FAIL_INIT_FRONTEND       -7
+#define OFXASR_FAIL_STARTENGINE         -8
+#define OFXASR_FAIL_INIT_DECODER        -9
+#define OFXASR_INVALID_AUDIO_FORMAT     -10
+
+struct ofAsrEngineArgs
+{    
+    int samplerate;
+    
+    // Only for sphinx
+    string sphinxmodel_am;
+    string sphinxmodel_lm;
+    string sphinxmodel_dict;
+    string sphinxmodel_fdict;
+    int sphinx_mode;
+    vector<string> sphinx_candidate_sentences;
+
+    // Only for some other recognition engine
+    int other_engine_foo;
+    int other_engine_bar;
+
+    ofAsrEngineArgs()
+    {
+        samplerate = 16000;
+        sphinx_mode = 0;
+    }
+};
+
 class ofxASR
 {
 public:
-    // Operation of the ASR Engine
-    virtual void engineInit() = 0;
-    virtual void engineExit() = 0;
-    virtual void engineOpen() = 0;
-    virtual void engineClose() = 0;
-    virtual void engineReset() = 0;
-    virtual void engineSentAudio(char *audioBuf, int audioSize) = 0;
+    // Operation of the ASR engine
+    virtual int engineInit(ofAsrEngineArgs *e) = 0;
+    virtual int engineExit() = 0;
+    virtual int engineOpen() = 0;
+    virtual int engineClose() = 0;
+    virtual int engineSentAudio(short *audioBuf, int audioSize) = 0;
     virtual char * engineGetText() = 0;
+    virtual bool isEngineStarted() = 0;
 
 private:
-    // Audio Receive Event
+    // Audio receive event
     virtual void _audioReceived(ofAudioEventArgs &e) = 0;
 };
 

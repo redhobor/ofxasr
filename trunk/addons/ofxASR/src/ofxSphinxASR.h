@@ -29,6 +29,9 @@
 #define OFXSPHINXASR_H
 
 #include "ofxBaseASR.h"
+#include "s3_decode.h"
+#include "fsg_model.h"
+#include "jsgf.h"
 
 class ofxSphinxASR : public ofxASR
 {
@@ -37,20 +40,31 @@ public:
     ~ofxSphinxASR();
 
     // Operation of the ASR Engine
-    void engineInit();
-    void engineExit();
-    void engineOpen();
-    void engineClose();
-    void engineReset();
-    void engineSentAudio(char *audioBuf, int audioSize);
+    int engineInit(ofAsrEngineArgs *e);
+    int engineExit();
+    int engineOpen();
+    int engineClose();
+    int engineSentAudio(short *audioBuf, int audioSize);
+    bool isEngineStarted();
     char * engineGetText();
 
 private:
     // Audio Receive Event
     void _audioReceived(ofAudioEventArgs &e);
 
+    // The Decoder
+    s3_decode_t *decoder;
+    fe_t *fe;
+
+    // States
     bool bEngineInitialed;
-    bool bEngineStarted;
+    bool bEngineStarted;    
+
+    // Grammar
+    fsg_model_t *get_fsg(jsgf_t *grammar, const char *name);
+
+    // Utterance number
+    int uttnum;
 };
 
 #endif
