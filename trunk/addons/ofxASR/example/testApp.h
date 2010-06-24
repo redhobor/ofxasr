@@ -36,10 +36,12 @@ class testApp : public ofBaseApp{
 	public:
         void setup();     // set up ASR engines
         void exit();
+        void draw();
         void mousePressed( int x, int y, int button );  // press mouse to record
         void mouseReleased();                           // release mouse to stop record
 
-	private:
+    private:
+        ofTrueTypeFont	verdana;
         ofxASR *engine1_listenFromList;
         ofxASR *engine2_listenFromAnything;
         ofAsrEngineArgs *e;
