@@ -115,7 +115,6 @@ void testApp::exit(){
 void testApp::mousePressed( int x, int y, int button )
 {
     // Open the engines.
-    // Once the engine be opened, it will start to recognize the sound from ofSoundStream
     int retval;
     retval = engine1_listenFromList->engineOpen();
     if (retval != OFXASR_SUCCESS) {
