@@ -39,6 +39,7 @@ class testApp : public ofBaseApp{
         void draw();
         void mousePressed( int x, int y, int button );  // press mouse to record
         void mouseReleased();                           // release mouse to stop record
+        void audioReceived( float * input, int bufferSize, int nChannels );
 
     private:
         ofTrueTypeFont	verdana;
