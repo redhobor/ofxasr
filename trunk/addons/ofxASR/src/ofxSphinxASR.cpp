@@ -68,17 +68,19 @@ int ofxSphinxASR::engineInit(ofAsrEngineArgs *e)
 
     if (e->sphinx_mode == 2) {
         if(e->sphinx_candidate_sentences.size() < 1) {
-            printf("Warning: The word list has not been provided! Use mode 0.\n");
-            e->sphinx_mode = 0;
+            printf("Warning: The word list is empty! Use mode 4.\n");
+            e->sphinx_mode = 4;
         }
         else {
             FILE *gram_fp = fopen(grammarJSGF_filename, "wt");
             if (gram_fp==NULL)
                 return OFXASR_FAIL_WRITE_CONFIG;
 
-            fprintf(gram_fp, "#JSGF V1.0;\n\ngrammar cca_gram;\n\npublic <cca_gram> = (\n");
+            fprintf(gram_fp, 
+            		"#JSGF V1.0;\n\ngrammar cca_gram;\n\npublic <cca_gram> = (\n");
             for (int i=0; i<e->sphinx_candidate_sentences.size()-1; i++) {
-                fprintf(gram_fp, "%s |\n", e->sphinx_candidate_sentences[i].c_str());
+                fprintf(gram_fp, "%s |\n",
+                 e->sphinx_candidate_sentences[i].c_str());
             }
             fprintf(gram_fp, "%s );\n\n", 
                 e->sphinx_candidate_sentences[e->sphinx_candidate_sentences.size()-1].c_str());
@@ -212,7 +214,8 @@ fsg_model_t* ofxSphinxASR::get_fsg(jsgf_t *grammar, const char *name)
             if ((name == NULL && jsgf_rule_public(rule))
                 || (name && strlen(rule_name)-2 == strlen(name) &&
                 0 == strncmp(rule_name + 1, name, strlen(rule_name) - 2))) {
-                    fsg = jsgf_build_fsg_raw(grammar, rule, logmath_retain(lmath), 1.0);
+                    fsg = jsgf_build_fsg_raw(grammar,
+                                             rule, logmath_retain(lmath), 1.0);
                     jsgf_rule_iter_free(itor);
                     break;
             }

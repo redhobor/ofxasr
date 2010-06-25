@@ -38,7 +38,7 @@ class testApp : public ofBaseApp{
         void exit();
         void draw();
         void mousePressed( int x, int y, int button );  // press mouse to record
-        void mouseReleased();                           // release mouse to stop record
+        void mouseReleased();                    // release mouse to stop record
         void audioReceived( float * input, int bufferSize, int nChannels );
 
     private:
