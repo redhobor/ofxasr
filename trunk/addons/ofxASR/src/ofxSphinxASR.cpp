@@ -35,7 +35,6 @@
 
 ofxSphinxASR::ofxSphinxASR()
 {
-    ofAddListener(ofEvents.audioReceived, this, &ofxSphinxASR::_audioReceived);
     bEngineInitialed = false;
     bEngineOpened = false;
     decoder = NULL;
@@ -113,9 +112,6 @@ int ofxSphinxASR::engineInit(ofAsrEngineArgs *e)
     if (s3_decode_init(decoder, config) != S3_DECODE_SUCCESS) {
         return OFXASR_FAIL_INIT_DECODER;
     }
-    else {
-        printf("ok\n");
-    }
 
     fe = fe_init_auto_r(config); 
     if (fe == NULL) {
@@ -128,9 +124,15 @@ int ofxSphinxASR::engineInit(ofAsrEngineArgs *e)
 
 int ofxSphinxASR::engineExit()
 {
+    s3_decode_close(decoder);
+
     if (decoder != NULL) {
         delete decoder;
         decoder = NULL;
+    }
+    if (fe != NULL) {
+        fe_free(fe);
+        fe = NULL;
     }
 
     return OFXASR_SUCCESS;
@@ -189,19 +191,6 @@ char * ofxSphinxASR::engineGetText()
     else {
         return NULL;
     }       
-}
-
-void ofxSphinxASR::_audioReceived(ofAudioEventArgs &e)
-{
-    if (e.nChannels > 1) {
-        printf("Only support 1-channel audio!\n");
-        return;
-    }
-    short *buf_16 = new short[e.bufferSize];
-    for (int i=0; i<e.bufferSize; i++) {
-        buf_16[i] = short(e.buffer[i] * 32767.5 - 0.5);
-    }
-    engineSentAudio(buf_16, e.bufferSize);
 }
 
 bool ofxSphinxASR::isEngineOpened()
