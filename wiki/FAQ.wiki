@@ -10,7 +10,7 @@ There're some open source organisations provide models, such as voxforge (http:/
 It is very easy to replace the model by yourself, just download(or train) a new model and copy it to the special path.
 
 ===What components do I need to build an oF based application with speech-recognition?===
-First, of course you need download [http://www.openframeworks.cc OpenFrameworks] for your platform.
+First, of course you need download [http://www.openframeworks.cc/download OpenFrameworks] for your platform.
 
 Then, you need download this addon. Download ofxasr_x.xx.tar.gz from our download page, where the "x.xx" is the newest version number.
 
