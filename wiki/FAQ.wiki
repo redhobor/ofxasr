@@ -12,9 +12,9 @@ It is very easy to replace the model by yourself, just download(or train) a new 
 ===What components do I need to build an oF based application with speech-recognition?===
 First, of course you need download [http://www.openframeworks.cc/download OpenFrameworks] for your platform.
 
-Then, you need download this addon. Download ofxasr_x.xx.tar.gz from our download page, where the "x.xx" is the newest version number.
+Then, you need download this addon. [http://code.google.com/p/ofxasr/downloads/list Download] ofxasr_x.xx.tar.gz, where the "x.xx" is the newest version number.
 
-In addition, you MUST have a sphinx-compatible resource package, which should contain an acoustics model, a language model, and dictionary. In our download page, a simple resource package is provide that can recognize English digits.
+In addition, you MUST have a sphinx-compatible resource package, which should contain an acoustics model, a language model, and dictionary. In our [http://code.google.com/p/ofxasr/downloads/list download page], a simple resource package is provide that can recognize English digits.
 
 ===Why the resource package is required? What is it?===
 Most state-of-art speech recognition engine is based on Hidden Markov Model (HMM), and the resource package contains
@@ -29,7 +29,7 @@ Although this addon wss designed as independent from the speech engine, it only 
 the components(dictionary, AM, LM) in the resource package must be sphinx-compatible.
 
 ===Where can I get a resource package?===
-Our download page provided a very simple resource package, it can only recognize English digits, that means even you speak something else, it still give the most similar English digits as the recognition result. We will provide more ready-to-use packages in future.
+Our [http://code.google.com/p/ofxasr/downloads/list download page] provided a very simple resource package, it can only recognize English digits, that means even you speak something else, it still give the most similar English digits as the recognition result. We will provide more ready-to-use packages in future.
 
 A resource package in fact is a folder that contains dictionary, AM and LM. To get a better resource package, you can download components from somewhere else. Here are some sites:
 
