@@ -29,7 +29,7 @@ Although this addon wss designed as independent from the speech engine, it only 
 the components(dictionary, AM, LM) in the resource package must be sphinx-compatible.
 
 ===Where can I get a resource package?===
-Our download page provided a very simple resource package, but it can only recognize English digits, that means even you speak something else, it still give the most similar English digits as the recognition result. We will provide more ready-to-use packages in future.
+Our download page provided a very simple resource package, it can only recognize English digits, that means even you speak something else, it still give the most similar English digits as the recognition result. We will provide more ready-to-use packages in future.
 
 A resource package in fact is a folder that contains dictionary, AM and LM. To get a better resource package, you can download components from somewhere else. Here are some sites:
 
