@@ -65,5 +65,5 @@ Please check:
   * Do you use the correct mode? If you chose Mode-2, you must provide a list and only speak sentences in the list.
 The recognizing accuracy is mainly depended on the AM and the LM. You may need to find better models.
 
-===I have a problem/question which is not on this FAQ===
+===I have a problem/question which is not on this FAQ.===
 Feel free to [mailto:dr.jimbozhang@gmail.com email] me directly. :)
