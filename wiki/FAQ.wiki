@@ -67,3 +67,5 @@ The recognizing accuracy is mainly depended on the AM and the LM. You may need t
 
 ===I have a problem/question which is not on this FAQ.===
 Feel free to [mailto:dr.jimbozhang@gmail.com email] me directly. :)
+
+I'd glad to answer any questions and add this question into this FAQ if needed.
