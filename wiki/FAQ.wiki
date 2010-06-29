@@ -8,3 +8,10 @@ Which language an ASR engine support depends on the type of the acoustic model a
 There're some open source organisations provide models, such as voxforge (http://www.voxforge.org/). Most open source models are in English, so, the first release of ofxASR shipped an opensource English model.
 
 It is very easy to replace the model by yourself, just download(or train) a new model and copy it to the special path.
+
+===What components do I need to build an oF based application with speech-recognition?===
+First, of course you need download OpenFrameworks for your platform. The newest OpenFrameworks can be downloaded from its offical site: http://www.openframeworks.cc
+
+Then, you need download this addon. Download ofxasr_x.xx.tar.gz from our download page, where the "x.xx" is the newest version number.
+
+In addition, you MUST have a sphinx-compatible resource package, which should contain an acoustics model, a language model, and dictionary. In our download page, a simple resource package is provide that can recognize English digits.
