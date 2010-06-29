@@ -39,4 +39,4 @@ http://www.repository.voxforge1.org/downloads/Main/Trunk/AcousticModels/Sphinx/
 
 And there are many other sites also provides sphinx resource.
 
-You can also train AM and LM by yourself. To learn more about train a model, read [http://cmusphinx.sourceforge.net/wiki/ sphinx's documents].
+You can also train AM and LM by yourself. To learn more about train a model, read [http://cmusphinx.sourceforge.net/wiki/ sphinx's documents]. But we do not suggest you training models by yourself, because it need huge audio data and it is not a very easy thing.
