@@ -15,3 +15,24 @@ First, of course you need download OpenFrameworks for your platform. The newest 
 Then, you need download this addon. Download ofxasr_x.xx.tar.gz from our download page, where the "x.xx" is the newest version number.
 
 In addition, you MUST have a sphinx-compatible resource package, which should contain an acoustics model, a language model, and dictionary. In our download page, a simple resource package is provide that can recognize English digits.
+
+===Why the resource package is required? What is it?===
+Most state-of-art speech recognition engine is based on Hidden Markov Model (HMM), and the resource package contains
+the resources that a HMM-based recognition engine need.
+
+A resource package must contain:
+  * Dictionary: Any word that not in the dictionary can not be recognized.
+  * Acoustics Model (AM): Descripts the acoustics statistical properties.
+  * Language Model (LM): Descripts the linguistics statistical properties.
+
+Although this addon wss designed as independent from the speech engine, it only support Sphinx in the current version. Therefore,
+the components(dictionary, AM, LM) in the resource package must be sphinx-compatible.
+
+===Where can I get a resource package?===
+Our download page provided a very simple resource package, but it can only recognize English digits, that means even you speak something else, it still give the most similar English digits as the recognition result.
+
+A resource package in fact is a folder that contains dictionary, AM and LM. To get better resource package, you can download those components from somewhere else. Here are some sites:
+http://www.keithv.com/software/sphinx/
+http://www.repository.voxforge1.org/downloads/Main/Trunk/AcousticModels/Sphinx/
+
+And there are many other sites also provides sphinx resource.
