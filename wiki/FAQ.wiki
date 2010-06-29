@@ -50,8 +50,7 @@ Note: Don't forget to download a resource package.
 ===ofxASR supports two modes, what is the detail?===
 Currently ofxASR supports two modes:
   * Mode-4: Any words in the dictionary can be recognized. The speaker is allowed to speak anything. In this mode, it is free to speak but not very accuracy.
-  * Mode-2: A list contains some sentences was required and the speaker must select one sentence to read. If she/he spoke something not in the list, the engine will 
-return the most similar sentence from the list. This mode seems not very "free" but it is accuracy.
+  * Mode-2: A list contains some sentences was required and the speaker must select one sentence to read. If she/he spoke something not in the list, the engine will return the most similar sentence from the list. This mode seems not very "free" but it is accuracy.
 
 The mode numbers "4" and "2" are inherited from sphinx3's mode names.
 
