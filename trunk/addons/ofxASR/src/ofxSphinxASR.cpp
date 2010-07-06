@@ -31,6 +31,7 @@
 #include <unistd.h>
 #endif
 
+#include <stdio.h>
 #include "ofxSphinxASR.h"
 
 ofxSphinxASR::ofxSphinxASR()
@@ -146,7 +147,7 @@ int ofxSphinxASR::engineOpen()
         return OFXASR_HAVE_NOT_INIT;
 
     char uttid[8];
-    itoa(uttnum, uttid, 10);
+    sprintf(uttid, "%d", uttnum);
     if (s3_decode_begin_utt(decoder, uttid) != S3_DECODE_SUCCESS)
     {
         return OFXASR_FAIL_STARTENGINE;
