@@ -51,27 +51,35 @@ void testApp::setup(){
     //////////////////////////////////////////////////////////////////////////
     engine1_listenFromList = new ofxSphinxASR;
     e = new ofAsrEngineArgs;
-
-    // set sample rate to 16000 Hz
+	
+	// set sample rate to 16000 Hz
     e->samplerate = 16000;
-
+	
     // set mode code
-    e->sphinx_mode = 4;
+    e->sphinx_mode = 4;	
 
+#if defined TARGET_OSX    
     // set the folder of the acoustics model
-    e->sphinxmodel_am = "sphinxmodel/digit.8gau";
+    e->sphinxmodel_am = ".";
 
     // set the path of the language model
-    e->sphinxmodel_lm = "sphinxmodel/digit.lm.DMP";
+    e->sphinxmodel_lm = "digit.lm.DMP";
 
     // set the path of the dict and the filler dict
+    e->sphinxmodel_dict = "dictionary";
+    e->sphinxmodel_fdict = "fillerdict";
+#else
+    e->sphinxmodel_am = "sphinxmodel/digit.8gau";
+    e->sphinxmodel_lm = "sphinxmodel/digit.lm.DMP";
     e->sphinxmodel_dict = "sphinxmodel/digit.dict";
     e->sphinxmodel_fdict = "sphinxmodel/digit.fdict";
+#endif
 
     // Initial the engine
     int retval = engine1_listenFromList->engineInit(e);
     if (retval != OFXASR_SUCCESS) {
         printf("ASR Engine initial failed. Error Code: %d\n", retval);
+		result_from_engine1 = "ASR Engine initial failed. Check sphinx resource path";
     }
 
     //////////////////////////////////////////////////////////////////////////
@@ -81,16 +89,22 @@ void testApp::setup(){
     e->sphinx_mode = 2;
 
     // Mode-2 need a list. Add sentences to the list
-    e->sphinx_candidate_sentences.push_back("one two three four");
-    e->sphinx_candidate_sentences.push_back("nine one one");
+	e->sphinx_candidate_sentences.push_back("one");
+	e->sphinx_candidate_sentences.push_back("two");
     e->sphinx_candidate_sentences.push_back("three");
+	e->sphinx_candidate_sentences.push_back("four");
+	e->sphinx_candidate_sentences.push_back("five");
+	e->sphinx_candidate_sentences.push_back("six");
+	e->sphinx_candidate_sentences.push_back("seven");
+	e->sphinx_candidate_sentences.push_back("eight");
+	e->sphinx_candidate_sentences.push_back("nine");
+	e->sphinx_candidate_sentences.push_back("zero");
     
     retval = engine2_listenFromAnything->engineInit(e);
     if (retval != OFXASR_SUCCESS) {
         printf("ASR Engine initial failed. Error Code: %d\n", retval);
+		result_from_engine1 = "ASR Engine initial failed. Check sphinx resource path";
     }
-
-
 }
 
 //--------------------------------------------------------------
@@ -125,8 +139,12 @@ void testApp::mousePressed( int x, int y, int button )
         printf("ASR Engine failed to open. Error Code: %d\n", retval);
     }
 
-    // For recording. Note that Mac OS do not support 16k sample rate
+    // Recording. Note that Mac OS do not support 16k sample rate
+#if defined TARGET_OSX
+	ofSoundStreamSetup(0, 1, this, 48000, 256, 2);
+#else
     ofSoundStreamSetup(0, 1, this, 16000, 256, 2);
+#endif
 }
 
 //--------------------------------------------------------------
@@ -149,10 +167,24 @@ void testApp::mouseReleased()
     }
 
     // Get result
-    string s1(engine1_listenFromList->engineGetText());
-    result_from_engine1 = s1;
-    string s2(engine2_listenFromAnything->engineGetText());
-    result_from_engine2 = s2;
+	char *result_str;
+	result_str = engine1_listenFromList->engineGetText();
+	if (result_str) {
+		string s1(result_str);
+		result_from_engine1 = s1;
+	}
+	else {
+		result_from_engine1 = "[No result.]";
+	}
+
+    result_str = engine2_listenFromAnything->engineGetText();
+	if (result_str) {
+		string s2(result_str);
+		result_from_engine2 = s2;
+	}
+	else {
+		result_from_engine2 = "[No result.]";
+	}
 };
 
 void testApp::draw()
@@ -171,12 +203,19 @@ void testApp::audioReceived( float * input, int bufferSize, int nChannels )
         return;
     }
 
-    // Convert sound from float to short
-    short *buf_16 = new short[bufferSize];
+    // Convert sound from float to short    
+#ifdef TARGET_OSX
+	short *buf_16 = new short[bufferSize/3];
+	for (int i=0; i<bufferSize/3; i++) {
+        buf_16[i] = short(input[i*3] * 32767.5 - 0.5);
+    }
+#else
+	short *buf_16 = new short[bufferSize];
     for (int i=0; i<bufferSize; i++) {
         buf_16[i] = short(input[i] * 32767.5 - 0.5);
     }
-
+#endif
+	
     // Sent sound to engines
     engine1_listenFromList->engineSentAudio(buf_16, bufferSize);
     engine2_listenFromAnything->engineSentAudio(buf_16, bufferSize);
