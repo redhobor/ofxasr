@@ -25,8 +25,6 @@ Although this addon wss designed as independent from the speech engine, it only 
 the components(dictionary, AM, LM) in the resource package must be sphinx-compatible.
 
 ===Where can I get a resource package?===
-Our [http://code.google.com/p/ofxasr/downloads/list download page] provided a very simple resource package, it can only recognize English digits, that means even you speak something else, it still give the most similar English digits as the recognition result. We will provide more ready-to-use packages in future.
-
 A resource package in fact is a folder that contains dictionary, AM and LM. To get a better resource package, you can download components from somewhere else. Here are some sites:
 
 http://www.keithv.com/software/sphinx/
@@ -37,6 +35,11 @@ And there are many other sites also provides sphinx resource.
 
 You can also train AM and LM by yourself. To learn more about train a model, read [http://cmusphinx.sourceforge.net/wiki/ sphinx's documents]. But we do not suggest you training models by yourself, because it need huge audio data and it is not a very easy thing.
 
+Our [http://code.google.com/p/ofxasr/downloads/list download page] also provided two resource packages by now:
+
+[http://code.google.com/p/ofxasr/downloads/detail?name=typical_model.tar.gz typical_model.tar.gz]: a very simple resource package, it can only recognize English digits, that means even you speak something else, it still give the most similar English digits as the recognition result. We will provide more ready-to-use packages in future.
+
+[http://code.google.com/p/ofxasr/downloads/detail?name=sphinxmodel_voxforge-en-r0_1_3.tar.gz sphinxmodel_voxforge-en-r0_1_3.tar.gz] a resource package from [http://www.voxforge.org/ VoxForge], it provides complete resource for English recognition task.
 
 ===Is there documents about this addon?===
 In the addons/ofxASR/example folder, there is a example program that demonstrated how to develop a oF based application with ofxASR.
