@@ -37,9 +37,11 @@ You can also train AM and LM by yourself. To learn more about train a model, rea
 
 Our [http://code.google.com/p/ofxasr/downloads/list download page] also provided two resource packages by now:
 
-[http://code.google.com/p/ofxasr/downloads/detail?name=typical_model.tar.gz typical_model.tar.gz]: a very simple resource package, it can only recognize English digits, that means even you speak something else, it still give the most similar English digits as the recognition result. We will provide more ready-to-use packages in future.
+[http://code.google.com/p/ofxasr/downloads/detail?name=typical_model.tar.gz typical_model.tar.gz]:
+a very simple resource package, it can only recognize English digits, that means even you speak something else, it still give the most similar English digits as the recognition result. We will provide more ready-to-use packages in future.
 
-[http://code.google.com/p/ofxasr/downloads/detail?name=sphinxmodel_voxforge-en-r0_1_3.tar.gz sphinxmodel_voxforge-en-r0_1_3.tar.gz] a resource package from [http://www.voxforge.org/ VoxForge], it provides complete resource for English recognition task.
+[http://code.google.com/p/ofxasr/downloads/detail?name=sphinxmodel_voxforge-en-r0_1_3.tar.gz sphinxmodel_voxforge-en-r0_1_3.tar.gz]:
+ a resource package from [http://www.voxforge.org/ VoxForge], it provides complete resource for English recognition task.
 
 ===Is there documents about this addon?===
 In the addons/ofxASR/example folder, there is a example program that demonstrated how to develop a oF based application with ofxASR.
