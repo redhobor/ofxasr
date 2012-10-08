@@ -24,6 +24,11 @@ A resource package must contain:
 Although this addon wss designed as independent from the speech engine, it only support Sphinx in the current version. Therefore,
 the components(dictionary, AM, LM) in the resource package must be sphinx-compatible.
 
+===Is there documents about this addon?===
+In the addons/ofxASR/example folder, there is a example program that demonstrated how to develop a oF based application with ofxASR.
+
+Note: Don't forget to download a resource package.
+
 ===Where can I get a resource package?===
 A resource package in fact is a folder that contains dictionary, AM and LM. To get a better resource package, you can download components from somewhere else. Here are some sites:
 
@@ -43,10 +48,17 @@ Our [http://code.google.com/p/ofxasr/downloads/list download page] also provided
  * [http://code.google.com/p/ofxasr/downloads/detail?name=sphinxmodel_voxforge-en-r0_1_3.tar.gz sphinxmodel_voxforge-en-r0_1_3.tar.gz]:
  a resource package from [http://www.voxforge.org/ VoxForge], it provides complete resource for English recognition task.
 
-===Is there documents about this addon?===
-In the addons/ofxASR/example folder, there is a example program that demonstrated how to develop a oF based application with ofxASR.
+===Which path should I put the resource package?===
+Firstly, you should know which file is the Dictionary, which file is the AM and which file is the LM in the resource package.
 
-Note: Don't forget to download a resource package.
+Unzip the resource package to any location, and set the path of the Dictionary/AM/LM in your client applications like below:
+{{{
+ofAsrEngineArgs *e = new ofAsrEngineArgs;	
+e->sphinxmodel_am = "sphinxmodel/digit.8gau";
+e->sphinxmodel_lm = "sphinxmodel/digit.lm.DMP";
+e->sphinxmodel_dict = "sphinxmodel/digit.dict";
+e->sphinxmodel_fdict = "sphinxmodel/digit.fdict";
+}}}
 
 ===ofxASR supports two modes, what is the detail?===
 Currently ofxASR supports two modes:
